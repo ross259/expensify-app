@@ -39,6 +39,12 @@ yarn-error.log
 public/bundle.js
 __snapshots__/
 
+#bundles - For React projects
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
+
 # Elastic Beanstalk CLI Files
 */.elasticbeanstalk/*
 */.ebextensions/*
