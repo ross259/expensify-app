@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import numeral from 'numeral';
 
 // These are only used for 'Remove' button. 'connect' is not necessary if you don't want the remove button.
 // If 'Remove' button is removed 'dispatch' is no longer needed to be destructured either.
@@ -7,24 +9,30 @@ import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import {removeExpense} from '../actions/expenses';
 
-export const ExpenseListItem = ({description, amount, createdAt, id, dispatch}) => (
-  
-    <div>
-      <Link to={`/edit/${id}`}>
+export const ExpenseListItem = ({ description, amount, createdAt, id, dispatch }) => (
+
+  <div>
+    <Link to={`/edit/${id}`}>
       <h3>
         {description}
       </h3>
-      </Link>
-      <p>{amount} - {createdAt}</p>
+    </Link>
+    <p>
+    {numeral(amount / 100).format('$0,0.00')}
+     - 
+    {moment(createdAt).format('MMMM Do, YYYY')}
+    </p>
 
-      { /*true ||
-        <button onClick={(e) => {
-          dispatch(removeExpense(id))
-        }}>Remove</button>
-      */}
+    {
+      /*true ||
+      <button onClick={(e) => {
+        dispatch(removeExpense(id))
+      }}>Remove</button>
+    */
+    }
 
-    </div>
-  
+  </div>
+
 )
 
 // export default connect ()(ExpenseListItem);
