@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import numeral from 'numeral';
 
 import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
