@@ -34,6 +34,8 @@ npm-debug.log
 testem.log
 /typings
 */.env
+.env.test
+.env.development
 *.zip
 yarn-error.log
 public/bundle.js
