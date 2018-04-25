@@ -21,5 +21,5 @@ export default [
     note:'',
     amount: 4500,
     createdAt: moment(0).add(4, 'days').valueOf()
-  },
+  }
 ]

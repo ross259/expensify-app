@@ -7,7 +7,8 @@ console.log('---------------------------');
 if (env === 'development'){
   process.env.DB_CONNECT = 'mongodb://localhost:27017/expensify';
 }else if (env === 'test'){
-  process.env.DB_CONNECT = 'mongodb://test_user:trains1234!@ds161304.mlab.com:61304/expensify_test';
+  process.env.DB_CONNECT = 'mongodb://localhost:27017/expensify_test';
+  // process.env.DB_CONNECT = 'mongodb://test_user:trains1234!@ds161304.mlab.com:61304/expensify_test';
 }else if (env === 'production'){
   // SERVER ENVIRONMENT VARIABLE
   process.env.DB_CONNECT ='mongodb://ross259:w0Rd2urM0M!@ds157599.mlab.com:57599/expensify';
