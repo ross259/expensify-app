@@ -1,5 +1,3 @@
-import uuid from 'uuid';
-// import moment from 'moment'
 import db from '../db/db_config';
 
 export const ADD_EXPENSE = 'ADD_EXPENSE';
@@ -8,14 +6,6 @@ export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const SET_EXPENSES = 'SET_EXPENSES';
 export const START_SET_EXPENSES = 'START_SET_EXPENSES';
-
-// Move to firebaseAPI
-// import database from '../firebase/firebase';
-
-// import * as db_mongo from '../db/db_mongo';
-// import * as db_firebase from '../db/db_firebase';
-
-// const db = db_mongo;
 
 export const addExpense = (expense) => ({
   type: ADD_EXPENSE,
@@ -44,6 +34,7 @@ export const startAddExpense = (expenseData = {}) => {
         const id = ref.data ? ref.data._id : ref.key;
         dispatch(addExpense({
           id: id,
+          // _id: id,
           ...expense
         }))
       }).catch((e) => {
@@ -59,6 +50,17 @@ export const removeExpense = (id) => (
   }
 )
 
+export const startRemoveExpense = (id) => {
+  return (dispatch) => {
+    return db.remove(`expenses/${id}`)
+    .then(() =>{
+      dispatch(removeExpense(id))
+    }).catch((e)=>{
+      console.log('Remove Expense Error:', e);
+    })
+  }
+}
+
 export const editExpense = (id, updates) => (
   {
     type: EDIT_EXPENSE,
@@ -66,6 +68,10 @@ export const editExpense = (id, updates) => (
     updates
   }
 )
+
+export const startEditExpense = (id, updates) => {
+
+}
 
 export const setExpenses = (expenses) => (
   {

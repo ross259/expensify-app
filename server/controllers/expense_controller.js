@@ -53,6 +53,14 @@ module.exports = {
 		.then((expenses) => {
 			res.send(expenses);
 		}).catch(next);
-  }
+	},
+	
+	delete(req, res, next) {
+		console.log('DELETING EXPENSE');
+		Expense.remove({id:req.params.id})
+		.then((expense)=>{
+			res.status(204).send();
+		}).catch(next);
+	}
   
 }

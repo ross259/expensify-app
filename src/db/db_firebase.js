@@ -31,4 +31,8 @@ const set = (node, data) => {
   return database.ref(node).set(dataSet);
 }
 
-export { get, getExpenses, push, set }
+const remove = (node) => {
+  return database.ref(node).remove();
+}
+
+export { get, getExpenses, push, set, remove }

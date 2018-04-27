@@ -8,7 +8,6 @@ const get = (node) => {
   // console.log (`HERE::: ${API_URL}${node}`);
   return axios.get(`${API_URL}${node}`)
   .then((res)=>{
-    console.log('RES:', res.data)
     return res.data
   }).catch((e)=>{
     console.log('GET ERROR:', e);
@@ -19,7 +18,6 @@ const get = (node) => {
 const getExpenses = (node) => {
   return axios.get(`${API_URL}${node}`)
   .then((res)=>{
-    console.log('RES:', res.data)
     return res.data
   }).catch((e)=>{
     console.log('GET ERROR:', e);
@@ -48,4 +46,13 @@ const set = (node, data) => {
 
 }
 
-export { get, getExpenses, push, set }
+const remove = (node) => {
+  return axios.delete(`${API_URL}${node}`)
+  .then((res) => {
+    return res
+  }).catch((e)=>{
+    console.log('PUSH ERROR:', e);
+  })
+}
+
+export { get, getExpenses, push, set, remove }
