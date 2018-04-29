@@ -10,9 +10,9 @@ const expenseReducer = (state = defaultState, action) => {
         action.expense
       ];
     case REMOVE_EXPENSE:
-      return state.filter(e => e.id !== action.id);
+      return state.filter(e => e._id !== action._id);
     case EDIT_EXPENSE:
-      return state.map((expense) => expense.id === action.id ? { ...expense, ...action.updates } : expense);
+      return state.map((expense) => expense._id === action._id ? { ...expense, ...action.updates } : expense);
     case SET_EXPENSES:
       return action.expenses;
     default:

@@ -16,20 +16,20 @@ test('should setup remove expense action object', () => {
   const action = removeExpense('43553');
   expect(action).toEqual({
     type: REMOVE_EXPENSE,
-    id: '43553'
+    _id: '43553'
   });
 });
 
 test('should remove expense from db', (done)=> {
   const store = createMockStore({});
-  const id = expenses[2].id
-  store.dispatch(startRemoveExpense(id)).then(()=>{
+  const _id = expenses[2]._id
+  store.dispatch(startRemoveExpense(_id)).then(()=>{
     const actions = store.getActions();
     expect(actions[0]).toEqual({
       type: REMOVE_EXPENSE,
-      id
+      _id
     });
-    return db.get(`expenses/${id}`);
+    return db.get(`expenses/${_id}`);
   }).then((snapshot)=>{
     expect(snapshot).toBeFalsy();
     done();
@@ -40,7 +40,7 @@ test('should setup edit expense action object', () => {
   const action = editExpense('435436', { note: 'new note value' })
   expect(action).toEqual({
     type: EDIT_EXPENSE,
-    id: '435436',
+    _id: '435436',
     updates: { note: 'new note value' }
   });
 });
@@ -68,12 +68,12 @@ test('should add expense to database and store', (done) => {
       expect(actions[0]).toEqual({
         type: 'ADD_EXPENSE',
         expense: {
-          id: expect.any(String),
+          _id: expect.any(String),
           // _id: expect.any(String),
           ...expenseData
         }
       });
-      return db.get(`expenses/${actions[0].expense.id}`);
+      return db.get(`expenses/${actions[0].expense._id}`);
     }).then((snapshot) => {
       expect({
         description: snapshot.description,
@@ -100,12 +100,12 @@ test('should add expense with defaults to database and store', (done) => {
       expect(actions[0]).toEqual({
         type: 'ADD_EXPENSE',
         expense: {
-          id: expect.any(String),
+          _id: expect.any(String),
           // _id: expect.any(String),
           ...expenseDefaults
         }
       });
-      return db.get(`expenses/${actions[0].expense.id}`);
+      return db.get(`expenses/${actions[0].expense._id}`);
     }).then((snapshot) => {
       expect({
         description: snapshot.description,

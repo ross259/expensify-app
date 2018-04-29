@@ -18,6 +18,7 @@ const get = (node) => {
 const getExpenses = (node) => {
   return axios.get(`${API_URL}${node}`)
   .then((res)=>{
+    console.log("DATA::", res.data)
     return res.data
   }).catch((e)=>{
     console.log('GET ERROR:', e);
@@ -39,9 +40,9 @@ const set = (node, data) => {
 
   return axios.post(`${API_URL}${node}/set`, data)
   .then((res) => {
-    return res
+    return res.data
   }).catch((e)=>{
-    console.log('PUSH ERROR:', e);
+    console.log('SET ERROR:', e);
   });
 
 }
@@ -49,9 +50,9 @@ const set = (node, data) => {
 const remove = (node) => {
   return axios.delete(`${API_URL}${node}`)
   .then((res) => {
-    return res
+    return res.data
   }).catch((e)=>{
-    console.log('PUSH ERROR:', e);
+    console.log('REMOVE ERROR:');
   })
 }
 

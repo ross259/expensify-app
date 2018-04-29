@@ -31,10 +31,9 @@ export const startAddExpense = (expenseData = {}) => {
     }
     return db.push('expenses', expense)
       .then((ref) => {
-        const id = ref.data ? ref.data._id : ref.key;
+        const _id = ref.data ? ref.data._id : ref.key;
         dispatch(addExpense({
-          id: id,
-          // _id: id,
+          _id: _id,
           ...expense
         }))
       }).catch((e) => {
@@ -43,33 +42,33 @@ export const startAddExpense = (expenseData = {}) => {
   }
 }
 
-export const removeExpense = (id) => (
+export const removeExpense = (_id) => (
   {
     type: REMOVE_EXPENSE,
-    id
+    _id
   }
 )
 
-export const startRemoveExpense = (id) => {
+export const startRemoveExpense = (_id) => {
   return (dispatch) => {
-    return db.remove(`expenses/${id}`)
+    return db.remove(`expenses/${_id}`)
     .then(() =>{
-      dispatch(removeExpense(id))
+      dispatch(removeExpense(_id))
     }).catch((e)=>{
       console.log('Remove Expense Error:', e);
     })
   }
 }
 
-export const editExpense = (id, updates) => (
+export const editExpense = (_id, updates) => (
   {
     type: EDIT_EXPENSE,
-    id,
+    _id,
     updates
   }
 )
 
-export const startEditExpense = (id, updates) => {
+export const startEditExpense = (_id, updates) => {
 
 }
 

@@ -16,7 +16,6 @@ module.exports = {
 	},
 
 	getExpenses(req, res, next) {
-		// console.log("HERHERHERHEHRHERHERHEHRHERHEH")
 		const getExpenses = Expense.find({})
 		.then((result)=>{
 			if (result) {

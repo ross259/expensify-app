@@ -11,7 +11,7 @@ const getExpenses = (node) => {
     const arr = [];
     snapshot.forEach((child)=>{
       arr.push({
-        id:child.key,
+        _id:child.key,
         ...child.val()
       });
     });
@@ -25,8 +25,8 @@ const push = (node, data) => {
 
 const set = (node, data) => {
   const dataSet = {};
-  data.forEach(({ id, description, note, amount, createdAt })=>{
-    dataSet[id] = { description, note, amount, createdAt };
+  data.forEach(({ _id, description, note, amount, createdAt })=>{
+    dataSet[_id] = { description, _id, note, amount, createdAt };
   });
   return database.ref(node).set(dataSet);
 }
