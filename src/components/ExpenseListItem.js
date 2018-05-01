@@ -9,10 +9,10 @@ import numeral from 'numeral';
 // import { connect } from 'react-redux';
 // import {removeExpense} from '../actions/expenses';
 
-export const ExpenseListItem = ({ description, amount, createdAt, id, dispatch }) => (
+export const ExpenseListItem = ({ description, amount, createdAt, _id, dispatch }) => (
 
   <div>
-    <Link to={`/edit/${id}`}>
+    <Link to={`/edit/${_id}`}>
       <h3>
         {description}
       </h3>

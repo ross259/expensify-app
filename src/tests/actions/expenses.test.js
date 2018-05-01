@@ -2,7 +2,7 @@ import moment from 'moment';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { startAddExpense, addExpense, ADD_EXPENSE, editExpense, EDIT_EXPENSE, removeExpense, REMOVE_EXPENSE, setExpenses, SET_EXPENSES, startSetExpenses, START_SET_EXPENSES, startRemoveExpense, START_REMOVE_EXPENSE } from '../../actions/expenses';
+import { startAddExpense, addExpense, ADD_EXPENSE, editExpense, EDIT_EXPENSE, removeExpense, REMOVE_EXPENSE, setExpenses, SET_EXPENSES, startSetExpenses, START_SET_EXPENSES, startRemoveExpense, START_REMOVE_EXPENSE, startEditExpense, START_EDIT_EXPENSE } from '../../actions/expenses';
 import db from '../../db/db_config';
 import expenses from '../fixtures/expenses';
 
@@ -45,6 +45,31 @@ test('should setup edit expense action object', () => {
   });
 });
 
+test('should edit expense in db and store',(done)=>{
+  const store = createMockStore({});
+  const _id = expenses[0]._id;
+  console.log('Set ID::', _id)
+  const updates = {
+    note: 'EDITED Expense with this NOTE!!'
+  }
+  store.dispatch(startEditExpense(_id, updates)).then(()=>{
+    console.log('Edited Expense')
+    const actions = store.getActions();
+    // console.log('ACTION:',actions[0])
+    expect(actions[0]).toEqual({
+      type: EDIT_EXPENSE,
+      _id,
+      updates
+    });
+    // Does not work in mongo because the _id from the expenses is not an ObjectId()
+    return db.get(`expenses/${_id}`);
+  }).then((snapshot)=>{
+    console.log(snapshot.note, updates.note)
+    expect(snapshot.note).toBe(updates.note);
+    done();
+  })
+});
+
 test('should setup add expense action object with provided values', () => {
   const action = addExpense(expenses[1]);
   expect(action).toEqual({
@@ -66,10 +91,9 @@ test('should add expense to database and store', (done) => {
       const actions = store.getActions();
       // console.log('ACTIONS:', actions)
       expect(actions[0]).toEqual({
-        type: 'ADD_EXPENSE',
+        type: ADD_EXPENSE,
         expense: {
           _id: expect.any(String),
-          // _id: expect.any(String),
           ...expenseData
         }
       });
@@ -98,7 +122,7 @@ test('should add expense with defaults to database and store', (done) => {
       const actions = store.getActions();
       // console.log('ACTIONS:', actions)
       expect(actions[0]).toEqual({
-        type: 'ADD_EXPENSE',
+        type: ADD_EXPENSE,
         expense: {
           _id: expect.any(String),
           // _id: expect.any(String),

@@ -5,7 +5,9 @@ export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const SET_EXPENSES = 'SET_EXPENSES';
+
 export const START_SET_EXPENSES = 'START_SET_EXPENSES';
+export const START_EDIT_EXPENSE = 'START_EDIT_EXPENSE';
 
 export const addExpense = (expense) => ({
   type: ADD_EXPENSE,
@@ -53,7 +55,7 @@ export const startRemoveExpense = (_id) => {
   return (dispatch) => {
     return db.remove(`expenses/${_id}`)
     .then(() =>{
-      dispatch(removeExpense(_id))
+      dispatch(removeExpense(_id));
     }).catch((e)=>{
       console.log('Remove Expense Error:', e);
     })
@@ -69,6 +71,16 @@ export const editExpense = (_id, updates) => (
 )
 
 export const startEditExpense = (_id, updates) => {
+  return (dispatch) => {
+    return db.updateExpense(`expenses/${_id}`, updates)
+    .then((expense)=>{
+      console.log("returned expense:", expense);
+      // Firebase does not return updated record from update query so updates is used insead of expense.
+      dispatch(editExpense(_id, updates));
+    }).catch((e) => {
+      console.log('Set Expenses Error:', e);
+    });
+  }
 
 }
 
@@ -84,9 +96,10 @@ export const startSetExpenses = (expenses) => {
 
     return db.getExpenses('expenses')
       .then((expenses) => {
+        // console.log("EXPENSES:", expenses)
         dispatch(setExpenses(expenses))
       }).catch((e) => {
-        console.log('ERROR', e);
+        console.log('Set Expenses Error:', e);
       });
 
   };

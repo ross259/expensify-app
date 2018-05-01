@@ -1,11 +1,8 @@
 import moment from 'moment';
-import uuid from 'uuid';
-import ObjectID from 'bson-objectid';
+// import mongoose from 'mongoose'
 
 export default [
   {
-    // _id:ObjectID().toHexString(),
-    // _id:uuid(),
     _id:'5ae650a1974b71284859885e',
     description:'Gum',
     note:'',
@@ -13,8 +10,6 @@ export default [
     createdAt: 0
   },
   {
-    // _id:ObjectID().toHexString(),
-    // _id:uuid(),
     _id:'5ae650a1974b71284859885f',
     description:'Rent',
     note:'',
@@ -22,8 +17,6 @@ export default [
     createdAt: moment(0).subtract(4, 'days').valueOf()
   },
   {
-    // _id:ObjectID().toHexString(),
-    // _id:uuid(),
     _id:'5ae650a1974b712848598860',
     description:'Credit Card',
     note:'',

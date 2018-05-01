@@ -31,8 +31,13 @@ const set = (node, data) => {
   return database.ref(node).set(dataSet);
 }
 
+const updateExpense = (node, data) => {
+  console.log('UPDATING:', node, data);
+  return database.ref(node).update(data)
+}
+
 const remove = (node) => {
   return database.ref(node).remove();
 }
 
-export { get, getExpenses, push, set, remove }
+export { get, getExpenses, push, set, updateExpense, remove }
