@@ -1,8 +1,9 @@
 import React from 'react';
 import { setAPI } from '../actions/api';
 
-// import { setAPI } from '../db/db_config';
+import { startSetExpenses } from '../actions/expenses';
 import db from '../db/db_config';
+// import { setAPIType } from '../db/db_config';
 
 import { connect } from 'react-redux';
 
@@ -19,6 +20,7 @@ export class APISelect extends React.Component {
     // db.whoAreYou();
     // e.target.value ==='date' ? this.props.sortByDate() : this.props.sortByAmount()
     this.props.setAPI(e.target.value);
+    this.props.startSetExpenses();
     db.whoAreYou();
   }
 
@@ -42,7 +44,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setAPI: (APIType) => dispatch(setAPI(APIType))
+  setAPI: (APIType) => dispatch(setAPI(APIType)),
+  startSetExpenses: () =>dispatch(startSetExpenses())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(APISelect);
