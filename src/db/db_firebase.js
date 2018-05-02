@@ -40,4 +40,8 @@ const remove = (node) => {
   return database.ref(node).remove();
 }
 
-export { get, getExpenses, push, set, updateExpense, remove }
+const whoAreYou = () => {
+  console.log('I am firebase');
+}
+
+export { get, getExpenses, push, set, updateExpense, remove, whoAreYou }
