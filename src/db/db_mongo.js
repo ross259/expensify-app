@@ -66,9 +66,9 @@ const remove = (node) => {
   })
 }
 
-const whoAreYou = () => {
-  console.log('I am mongo');
-}
+// const whoAreYou = () => {
+//   console.log('I am mongo');
+// }
 
 
-export { get, getExpenses, push, set, updateExpense, remove, whoAreYou }
+export { get, getExpenses, push, set, updateExpense, remove }

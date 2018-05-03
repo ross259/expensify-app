@@ -3,7 +3,7 @@ import { setAPIType } from '../db/db_config';
 
 export const SET_API = 'SET_API';
 
-export const setAPI = (APIType = 'mongo') => {
+export const setAPI = (APIType) => {
   console.log('API TYPE:', APIType);
   setAPIType(APIType);
   return {

@@ -1,4 +1,6 @@
-import database from '../firebase/firebase';
+import database, { firebase } from '../firebase/firebase';
+
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 const get = (node) => {
   return database.ref(node).once('value').then((snapshot)=>{
@@ -40,8 +42,12 @@ const remove = (node) => {
   return database.ref(node).remove();
 }
 
-const whoAreYou = () => {
-  console.log('I am firebase');
+const signInWithPopup = () => {
+ return firebase.auth().signInWithPopup(googleAuthProvider)
 }
 
-export { get, getExpenses, push, set, updateExpense, remove, whoAreYou }
+// const whoAreYou = () => {
+//   console.log('I am firebase');
+// }
+
+export { get, getExpenses, push, set, updateExpense, remove, signInWithPopup }

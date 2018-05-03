@@ -32,6 +32,7 @@ export class APISelect extends React.Component {
           <option value="firebase">Firebase</option>
           <option value="mysql">MySQL</option>
         </select>
+        <h6>* Remember to enable CORS when testing on Chrome.</h6>
       </div>
     )
   }
