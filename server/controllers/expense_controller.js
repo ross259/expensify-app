@@ -1,5 +1,5 @@
 const { mongoose } = require('../db/db');
-const { Expense } = require('../models/expense');
+const Expense = require('../models/expense');
 
 module.exports = {
 

@@ -21,7 +21,7 @@ export class APISelect extends React.Component {
     // e.target.value ==='date' ? this.props.sortByDate() : this.props.sortByAmount()
     this.props.setAPI(e.target.value);
     this.props.startSetExpenses();
-    db.whoAreYou();
+    // db.whoAreYou();
   }
 
   render() {

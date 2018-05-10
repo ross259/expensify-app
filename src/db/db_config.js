@@ -3,7 +3,8 @@ import * as db_firebase from './db_firebase';
 
 // FOR LOCAL DEV db_mongo REQUIRES CORS ENABLED
 // let db = db_mongo;
-let db = db_firebase;
+// let db = db_mongo;
+let db;
 
 const setAPIType = (apiType) => {
   console.log('Setting API', apiType)
@@ -15,6 +16,8 @@ const setAPIType = (apiType) => {
     console.log(`Type ${apiType} is not supported.`)
   }
 }
+
+setAPIType('mongo')
 
 export {
   setAPIType,

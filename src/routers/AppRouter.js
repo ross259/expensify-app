@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from '../components/Header';
 
 import LoginPage from '../components/LoginPage';
+import AuthRedirect from '../components/AuthRedirect';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
@@ -16,6 +17,7 @@ export default () => (
       <Header />
       <Switch>
         <Route path="/" component={LoginPage} exact={true} />
+        <Route path="/auth/google/redirect" component={AuthRedirect} />
         <Route path="/dashboard" component={ExpenseDashboardPage} />
         <Route path="/create" component={AddExpensePage} />
         <Route path="/edit/:id" component={EditExpensePage} />

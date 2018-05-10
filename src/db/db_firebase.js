@@ -42,12 +42,17 @@ const remove = (node) => {
   return database.ref(node).remove();
 }
 
-const signInWithPopup = () => {
- return firebase.auth().signInWithPopup(googleAuthProvider)
-}
-
 // const whoAreYou = () => {
 //   console.log('I am firebase');
 // }
 
-export { get, getExpenses, push, set, updateExpense, remove, signInWithPopup }
+const signInWithGoogle = () => {
+ return firebase.auth().signInWithPopup(googleAuthProvider)
+}
+
+const signOut = () => {
+  return firebase.auth().signOut();
+}
+
+
+export { get, getExpenses, push, set, updateExpense, remove, signInWithGoogle, signOut }

@@ -70,5 +70,19 @@ const remove = (node) => {
 //   console.log('I am mongo');
 // }
 
+const signInWithGoogle = () => {
+  console.log('Navigate To:', `${API_URL}auth/google`)
+  window.location = `${API_URL}auth/google`
+}
 
-export { get, getExpenses, push, set, updateExpense, remove }
+const signOut = () => {
+  console.log('logging out')
+  return axios.get(`${API_URL}auth/logout`)
+  .then((res)=>{
+    console.log('Res:', res.data)
+  }).catch((e)=>{
+    console.log('MONGO LOGIN ERROR:');
+  })
+}
+
+export { get, getExpenses, push, set, updateExpense, remove, signInWithGoogle, signOut }

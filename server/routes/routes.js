@@ -1,6 +1,17 @@
+// const router = require ('express').Router()
+
 const ExpenseController = require('../controllers/expense_controller');
+const UserController = require('../controllers/user_controller');
 
 module.exports = (app) => {
+
+  // Authentication Routes
+
+  // app.get('/api/auth/google', UserController.loginGoogle);
+
+  // app.get('/api/auth/logout', UserController.logout);
+
+  // Expense Routes
 
   app.get('/api/expenses', ExpenseController.getExpenses);
   
@@ -15,3 +26,5 @@ module.exports = (app) => {
   app.delete('/api/expenses/:id', ExpenseController.delete);
 
 }
+
+// module.exports = router;

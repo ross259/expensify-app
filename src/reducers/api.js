@@ -7,6 +7,7 @@ const defaultState = {
 const apiReducer = (state = defaultState, action) => {
   switch (action.type) {
     case SET_API:
+    // setAPIType(APIType);
       return {
         ...state,
         APIType: action.APIType
