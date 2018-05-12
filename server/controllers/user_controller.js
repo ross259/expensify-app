@@ -10,17 +10,17 @@ module.exports = {
       scope: ['profile']
     });
   },
-
-  logout(req, res, next) {
-    res.send('logging out')
-  },
-
+  
   googleRedirect(req, res, next) {
-    console.log('redirect success');
+    console.log('User:', req.user);
     // res.send('you reached the callback URI')
     //var token = req.user.tokens[req.user.tokens.length - 1].token
     //res.redirect(process.env.GOOGLE_REDIRECT_URL + token)
     res.redirect(process.env.GOOGLE_REDIRECT_URL)
+  },
+  
+  logout(req, res, next) {
+    res.send('logging out')
   }
-
+  
 }

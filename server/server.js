@@ -5,11 +5,19 @@ require('./config/database-config');
 const express = require ('express');
 const app = express();
 
+const cookieSession = require("cookie-session");
+app.use(cookieSession({
+	maxAge:7 * 24 * 60 * 60 * 1000,
+	keys: process.env.SESSION_KEY
+}))
+const passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+const passportConfig = require('./config/passport-config');
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const passportConfig = require('./config/passport-config');
-// const passport = require('passport');
 // const passportSocial = require('./middleware/passport')(app, passport);
 
 app.use((req, res, next) => {
