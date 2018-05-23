@@ -12,15 +12,24 @@ module.exports = {
   },
   
   googleRedirect(req, res, next) {
-    console.log('User:', req.user);
-    // res.send('you reached the callback URI')
-    //var token = req.user.tokens[req.user.tokens.length - 1].token
-    //res.redirect(process.env.GOOGLE_REDIRECT_URL + token)
-    res.redirect(process.env.GOOGLE_REDIRECT_URL)
+    console.log (req.user)
+    // var token = req.user.tokens[req.user.tokens.length - 1].token
+    // res.redirect(`${process.env.GOOGLE_REDIRECT_URL}/$${token}`);
+    res.redirect(process.env.GOOGLE_REDIRECT_URL);
   },
+
+  // getUser(req, res) {
+	// 	res.send(req.user);
+	// },
   
   logout(req, res, next) {
-    res.send('logging out')
+    // res.send('logging out')
+    console.log('Logging Out')
+    req.logout();
+    // req.user.removeToken(req.token)
+    // .then(() => {
+       res.status(204).send();
+    // }).catch(next);
   }
   
 }

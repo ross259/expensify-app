@@ -18,36 +18,32 @@ passport.use(
   new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-
     callbackURL: process.env.GOOGLE_CALLBACK_URL,
-
     // profileFields: ['id', 'displayName', 'photos', 'email'],
     // passReqToCallback: true
-
   }, (accessToken, refreshToken, profile, done) => {
 
-    // console.log(profile);
+    console.log('ACCESS TOKEN:', accessToken);
 
     User.findOne({ 'googleId': profile.id })
     .then((user) => {
       if (user) {
-        // user.generateAuthToken()
         return done(null, user);
       } else {
         new User({
           username: profile.displayName,
-          googleId: profile.id
+          googleId: profile.id,
+          googleToken: accessToken
         }).save()
           .then((newUser) => {
+            // newUser.tokens.push({ access:'auth', token:accessToken });
             console.log('User Created:', newUser);
-            // newUser.generateAuthToken()
             return done(null, newUser);
           });
       }
     }).catch((e)=>{
       console.log('Error finding profile:', e);
     })
-
 
   })
 );

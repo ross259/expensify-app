@@ -29,8 +29,8 @@ app.use((req, res, next) => {
 });
 
 // Two different ways to use routes
-const routes = require('./routes/routes');
-routes(app);
+const expenseRoutes = require('./routes/expense-routes');
+expenseRoutes(app);
 
 const authRoutes = require ('./routes/auth-routes')
 app.use('/api/auth', authRoutes)
