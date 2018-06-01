@@ -59,6 +59,9 @@ module.exports = (env) => {
       contentBase: path.join(__dirname, 'public'),
       port: 9000,
       historyApiFallback: true,
+      historyApiFallback: {
+        disableDotRule: true
+      },
       publicPath: '/dist/'
     }
   }

@@ -18,6 +18,7 @@ const setAPIType = (apiType) => {
 }
 
 setAPIType('mongo')
+// setAPIType('firebase')
 
 export {
   setAPIType,

@@ -12,10 +12,13 @@ module.exports = {
   },
   
   googleRedirect(req, res, next) {
-    console.log (req.user)
-    // var token = req.user.tokens[req.user.tokens.length - 1].token
+    console.log ('Redirect:', req.user)
+
+    const token = req.user.tokens[req.user.tokens.length - 1].token;
+
+    // const token = req.user.token;
     // res.redirect(`${process.env.GOOGLE_REDIRECT_URL}/$${token}`);
-    res.redirect(process.env.GOOGLE_REDIRECT_URL);
+    res.redirect(process.env.GOOGLE_REDIRECT_URL+token);
   },
 
   // getUser(req, res) {

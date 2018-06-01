@@ -5,7 +5,10 @@ const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
   username: String,
-  googleId: String,
+  google: {
+    id:String,
+    token:String
+  },
   tokens: [{
     createdAt: {
       type: Date,
@@ -31,10 +34,14 @@ UserSchema.methods.toJSON = function () {
   return userObject
 };
 
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = () => {
+
   var user = this;
   var access = 'auth';
+
   var token = jwt.sign({ _id: user._id.toHexString(), access }, process.env.JWT_SECRET).toString();
+
+  console.log('token:', token)
 
   user.tokens.push({ access, token });
   return user.save().then(() => {

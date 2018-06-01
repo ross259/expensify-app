@@ -1,4 +1,5 @@
 import axios from 'axios';
+import AppRouter, { history } from '../routers/AppRouter';
 
 const API_URL = process.env.API_URL || '/api/';
 
@@ -71,15 +72,16 @@ const remove = (node) => {
 // }
 
 const signInWithGoogle = () => {
-  console.log('Navigate To:', `${API_URL}auth/google`)
-  window.location = `${API_URL}auth/google`
+  console.log('Navigate To:', `${API_URL}auth/google`);
+  window.location = `${API_URL}auth/google`;
 }
 
 const signOut = () => {
-  console.log('logging out')
+  console.log('logging out');
   return axios.get(`${API_URL}auth/logout`)
   .then((res)=>{
     console.log('Res:', res.data)
+    history.push('/');
   }).catch((e)=>{
     console.log('MONGO LOGIN ERROR:');
   })
